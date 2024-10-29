@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+  name: "org-bnedtwovpqxaa2vz-requirements"
+  namespace: "org-bnedtwovpqxaa2vz"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: ocean
+  source:
+    repoURL: 'git@github.com:port-labs/ocean-saas-common.git'
+    path: charts/ocean-saas-organization
+    helm:
+      parameters:
+        - name: secretstore.awsRegion
+          value: "eu-west-1"
+        - name: secretstore.auth.type
+          value: "iam"
+        - name: secretstore.auth.secretStoreAssumeRoleArn
+          value: "arn:aws:iam::000000000000:role/local-org_BneDtWovPqXaA2VZ-eu-west-1-secrets-store"
+        - name: org.credentials.targetSecretName
+          value: "org-credentials-org-bnedtwovpqxaa2vz"
+        - name: org.credentials.secretName
+          value: "local-app-secret-org_BneDtWovPqXaA2VZ-60EsooJtOqimlekxrNh7nfr2iOgTcyLZ"
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: "org-bnedtwovpqxaa2vz"
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - Retry=true
+    retry:
+      limit: 10
+      backoff:
+        duration: 3s
+        factor: 2
+        maxDuration: 1m

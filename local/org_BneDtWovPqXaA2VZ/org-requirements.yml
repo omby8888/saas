@@ -19,7 +19,7 @@ spec:
         - name: secretstore.auth.type
           value: "iam"
         - name: secretstore.auth.secretStoreAssumeRoleArn
-          value: "arn:aws:iam::000000000000:role/local-org_BneDtWovPqXaA2VZ-eu-west-1-secrets-store"
+          value: "arn:aws:iam::185657066287:role/staging-org_BneDtWovPqXaA2VZ-eu-west-1-secrets-store"
         - name: org.credentials.targetSecretName
           value: "org-credentials-org-bnedtwovpqxaa2vz"
         - name: org.credentials.secretName

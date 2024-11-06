@@ -97,4 +97,5 @@ const iterateFiles = async (path = process.cwd()) => {
     }
 };
 
-iterateFiles().catch(err => console.error(`Failed to process files: ${err}`));
+const startPath = process.argv[2] || process.cwd();
+iterateFiles(startPath).catch(err => console.error(`Failed to process files: ${err}`));

@@ -24,7 +24,7 @@ for dir in "$PARENT_DIR"/*/; do
             git push origin main
 
             echo "Refreshing and syncing ArgoCD org application: $APP_NAME"
-            curl -X GET "${ARGO_URL}/api/v1/applications/${APP_NAME}?refresh=hard&appNamespace=$APP_NAME&project=ocean" \
+            curl -X GET "${ARGO_URL}/api/v1/applications/${APP_NAME}?refresh=hard&appNamespace=default&project=ocean" \
                 -H "Authorization: Bearer ${ARGO_TOKEN}" \
                 -H "Content-Type: application/json"
 

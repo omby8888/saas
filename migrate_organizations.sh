@@ -1,6 +1,8 @@
 #!/bin/bash
 
 PARENT_DIR=$1
+ARGO_TOKEN=$2
+ARGO_URL=${3:-http://localhost:8080}
 
 if [[ -z "$PARENT_DIR" ]]; then
     echo "Please provide a parent directory as an argument."
@@ -22,14 +24,14 @@ for dir in "$PARENT_DIR"/*/; do
             git push origin main
 
             echo "Refreshing and syncing ArgoCD application: $APP_NAME"
-            argocd app refresh "$APP_NAME" --hard-refresh
+            curl -X GET "${ARGO_URL}/api/v1/applications/${APP_NAME}?refresh=hard" \
+                -H "Authorization: Bearer ${ARGO_TOKEN}" \
+                -H "Content-Type: application/json"
 
-            argocd app sync "$APP_NAME" --wait
-            if [[ $? -eq 0 ]]; then
-                echo "Application '$APP_NAME' synced successfully."
-            else
-                echo "Failed to sync application '$APP_NAME'."
-            fi
+            curl -X POST "${ARGO_URL}/api/v1/applications/${APP_NAME}/sync" \
+                -H "Authorization: Bearer ${ARGO_TOKEN}" \
+                -H "Content-Type: application/json" \
+                -d "{\"project\": \"ocean\", \"appNamespace\": \"${APP_NAME}\", \"prune\": true, \"retryStrategy\": {\"limit\": 0}}"
         else
             echo "No changes detected in $dir."
         fi

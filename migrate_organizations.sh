@@ -17,7 +17,7 @@ for dir in "$PARENT_DIR"/*/; do
 
         if [[ $(git ls-files --modified '*.yml') ]]; then
             echo "Changes detected in $dir, committing changes..."
-            APP_NAME=$(basename "$dir")
+            APP_NAME=$(basename "$dir" | tr '[:upper:]' '[:lower:]' | tr '_' '-')
 
             git add .
             git commit -m "Migrate $APP_NAME to work with auto-sync"

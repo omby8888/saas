@@ -31,7 +31,7 @@ for dir in "$PARENT_DIR"/*/; do
             curl -X POST "${ARGO_URL}/api/v1/applications/${APP_NAME}/sync" \
                 -H "Authorization: Bearer ${ARGO_TOKEN}" \
                 -H "Content-Type: application/json" \
-                -d "{\"project\": \"ocean\", \"appNamespace\": \"${APP_NAME}\", \"prune\": true, \"retryStrategy\": {\"limit\": 0}}"
+                -d "{\"project\": \"ocean\", \"appNamespace\": \"default\", \"prune\": true, \"retryStrategy\": {\"limit\": 0}}"
         else
             echo "No changes detected in $dir."
         fi

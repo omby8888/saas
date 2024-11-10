@@ -19,7 +19,7 @@ for dir in "$PARENT_DIR"/*/; do
             echo "Changes detected in $dir, committing changes..."
             APP_NAME=$(basename "$dir" | tr '[:upper:]' '[:lower:]' | tr '_' '-')
 
-            git add .
+            git add "$PARENT_DIR/$dir"
             git commit -m "Migrate $APP_NAME to work with auto-sync"
             git push origin main
 

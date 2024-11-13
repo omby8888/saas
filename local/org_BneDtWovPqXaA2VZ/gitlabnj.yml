@@ -49,14 +49,3 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: org-bnedtwovpqxaa2vz
-  syncPolicy:
-    automated:
-      prune: true
-    syncOptions:
-      - Retry=true
-    retry:
-      limit: 10
-      backoff:
-        duration: 3s
-        factor: 2
-        maxDuration: 1m

@@ -2,55 +2,28 @@ const fs = require('fs').promises; // Using promises for better async handling
 const yaml = require('js-yaml');
 
 const updateOrgManifestContent = (content) => {
-    if (content.spec.syncPolicy.automated) return false;
+    if (!content.spec.syncPolicy.automated) return false;
 
-    content.spec.syncPolicy.automated = { prune: true };
-    content.spec.syncPolicy.syncOptions.push('Retry=true');
-    content.spec.syncPolicy.retry = {
-        limit: 10,
-        backoff: {
-            duration: '3s',
-            factor: 2,
-            maxDuration: '1m',
-        },
-    };
+    delete content.spec.syncPolicy.automated;
+    content.spec.syncPolicy.syncOptions = content.spec.syncPolicy.syncOptions.filter(option => option != 'Retry=true');
+    delete content.spec.syncPolicy.retry;
 
     return true;
 };
 
 const updateOrgRequirementsContent = (content) => {
-    if (content.spec.syncPolicy.syncOptions) return false;
+    if (!content.spec.syncPolicy.syncOptions) return false;
 
-    content.spec.syncPolicy.syncOptions = ['Retry=true'];
-    content.spec.syncPolicy.retry = {
-        limit: 10,
-        backoff: {
-            duration: '3s',
-            factor: 2,
-            maxDuration: '1m',
-        },
-    };
+    delete content.spec.syncPolicy.syncOptions;
+    delete content.spec.syncPolicy.retry;
 
     return true;
 };
 
 const updateIntegrationManifestContent = (content) => {
-    if (content.spec.syncPolicy) return false;
+    if (!content.spec.syncPolicy) return false;
 
-    content.spec.syncPolicy = {
-        automated: {
-            prune: true,
-        },
-        syncOptions: ['Retry=true'],
-        retry: {
-            limit: 10,
-            backoff: {
-                duration: '3s',
-                factor: 2,
-                maxDuration: '1m',
-            },
-        },
-    };
+    delete content.spec.syncPolicy;
 
     return true;
 };

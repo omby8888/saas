@@ -2,51 +2,46 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   annotations:
-    argocd.argoproj.io/sync-wave: '2'
-  name: jira
-  namespace: org-bnedtwovpqxaa2vz
+    argocd.argoproj.io/sync-wave: "2"
+  name: "jira"
+  namespace: "org-bnedtwovpqxaa2vz"
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   labels:
-    org_id: org_BneDtWovPqXaA2VZ
-    integration_identifier: jira
-    integration_id: integration_UeHVUyPLm3hDo88R
+    org_id: "org_BneDtWovPqXaA2VZ"
+    integration_identifier: "jira"
+    integration_id: "integration_aSZtF4lmvyM1lt31"
 spec:
   project: ocean
   source:
-    repoURL: git@github.com:port-labs/ocean-saas-common.git
+    repoURL: 'git@github.com:port-labs/ocean-saas-common.git'
     path: charts/ocean-saas-chart-wrap
     helm:
       parameters:
         - name: global.orgCredentialsSecretName
-          value: org-credentials-org-bnedtwovpqxaa2vz
+          value: "org-credentials-org-bnedtwovpqxaa2vz"
         - name: global.roleArn
-          value: >-
-            arn:aws:iam::000000000000:role/local-org_BneDtWovPqXaA2VZ-eu-west-1-secrets-store
+          value: "arn:aws:iam::000000000000:role/local-org_BneDtWovPqXaA2VZ-eu-west-1-secrets-store"
         - name: global.region
-          value: eu-west-1
+          value: "eu-west-1"
         - name: global.dynamodbTable
-          value: local-organization-secrets
-        - name: >-
-            global.configNameToItemName.OCEAN__INTEGRATION__CONFIG__ATLASSIAN_USER_EMAIL
-          value: org_BneDtWovPqXaA2VZ/global/_JIRA_ATLASSIAN_USER_EMAIL
-        - name: >-
-            global.configNameToItemName.OCEAN__INTEGRATION__CONFIG__ATLASSIAN_USER_TOKEN
-          value: org_BneDtWovPqXaA2VZ/global/_JIRA_ATLASSIAN_USER_TOKEN
+          value: "local-organization-secrets"
+        - name: global.configNameToItemName.OCEAN__INTEGRATION__CONFIG__ATLASSIAN_USER_EMAIL
+          value: "org_BneDtWovPqXaA2VZ/global/_oauth2-jira-jira-atlassianUserEmail"
+        - name: global.configNameToItemName.OCEAN__INTEGRATION__CONFIG__ATLASSIAN_USER_TOKEN
+          value: "org_BneDtWovPqXaA2VZ/global/_oauth2-jira-jira-atlassianUserToken"
         - name: ocean.integration.config.jiraHost
-          value: http://gever.com
+          value: "https://api.atlassian.com/ex/jira/33f08530-afd8-42fd-82cc-1dd5ebfeece8"
         - name: ocean.integration.identifier
-          value: jira
+          value: "jira"
         - name: ocean.integration.type
-          value: jira
+          value: "jira"
         - name: ocean.scheduledResyncInterval
-          value: >-
-            31 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 * *
-            *
+          value: "1 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 * * *"
         - name: ocean.workload.cron.suspend
-          value: ''
+          value: ""
         - name: ocean.port.baseUrl
-          value: http://localhost:3000
+          value: "http://localhost:3000"
   destination:
-    server: https://kubernetes.default.svc
-    namespace: org-bnedtwovpqxaa2vz
+    server: 'https://kubernetes.default.svc'
+    namespace: "org-bnedtwovpqxaa2vz"

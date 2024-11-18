@@ -10,7 +10,7 @@ metadata:
   labels:
     org_id: "org_BneDtWovPqXaA2VZ"
     integration_identifier: "gitlab"
-    integration_id: "integration_u4qehbRD8Gdahmmk"
+    integration_id: "integration_rUu6d2k6qLA45MwM"
 spec:
   project: ocean
   source:
@@ -27,17 +27,13 @@ spec:
         - name: global.dynamodbTable
           value: "local-organization-secrets"
         - name: global.configNameToItemName.OCEAN__INTEGRATION__CONFIG__TOKEN_MAPPING
-          value: "org_BneDtWovPqXaA2VZ/global/_GITLAB_TOKEN_MAPPING"
-        - name: ocean.integration.config.gitlabHost
-          value: "https://gitlab.com"
-        - name: ocean.integration.config.useSystemHook
-          value: "false"
+          value: "org_BneDtWovPqXaA2VZ/global/gitlab-gitlab-tokenMapping"
         - name: ocean.integration.identifier
           value: "gitlab"
         - name: ocean.integration.type
           value: "gitlab"
         - name: ocean.scheduledResyncInterval
-          value: "17 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 * * *"
+          value: "35 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 * * *"
         - name: ocean.workload.cron.suspend
           value: ""
         - name: ocean.port.baseUrl

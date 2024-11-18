@@ -10,7 +10,7 @@ metadata:
   labels:
     org_id: "org_BneDtWovPqXaA2VZ"
     integration_identifier: "jira"
-    integration_id: "integration_CMPpaNTaUThQPBbR"
+    integration_id: "integration_lsdzLPMzpyByQYqA"
 spec:
   project: ocean
   source:
@@ -27,9 +27,9 @@ spec:
         - name: global.dynamodbTable
           value: "local-organization-secrets"
         - name: global.configNameToItemName.OCEAN__INTEGRATION__CONFIG__ATLASSIAN_USER_EMAIL
-          value: "org_BneDtWovPqXaA2VZ/global/_oauth2-jira-jira-atlassianUserEmail"
+          value: "org_BneDtWovPqXaA2VZ/global/jira-jira-atlassianUserEmail"
         - name: global.configNameToItemName.OCEAN__INTEGRATION__CONFIG__ATLASSIAN_USER_TOKEN
-          value: "org_BneDtWovPqXaA2VZ/global/_oauth2-jira-jira-atlassianUserToken"
+          value: "org_BneDtWovPqXaA2VZ/global/jira-jira-atlassianUserToken"
         - name: ocean.integration.config.jiraHost
           value: "https://api.atlassian.com/ex/jira/33f08530-afd8-42fd-82cc-1dd5ebfeece8"
         - name: ocean.integration.identifier
@@ -37,7 +37,7 @@ spec:
         - name: ocean.integration.type
           value: "jira"
         - name: ocean.scheduledResyncInterval
-          value: "44 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 * * *"
+          value: "35 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 * * *"
         - name: ocean.workload.cron.suspend
           value: ""
         - name: ocean.port.baseUrl

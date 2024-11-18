@@ -1,0 +1,45 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+  name: "teststestest"
+  namespace: "org-bnedtwovpqxaa2vz"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    org_id: "org_BneDtWovPqXaA2VZ"
+    integration_identifier: "teststestest"
+    integration_id: "integration_Z9L2EQPehCJocUdq"
+spec:
+  project: ocean
+  source:
+    repoURL: 'git@github.com:port-labs/ocean-saas-common.git'
+    path: charts/ocean-saas-chart-wrap
+    helm:
+      parameters:
+        - name: global.orgCredentialsSecretName
+          value: "org-credentials-org-bnedtwovpqxaa2vz"
+        - name: global.roleArn
+          value: "arn:aws:iam::000000000000:role/local-org_BneDtWovPqXaA2VZ-eu-west-1-secrets-store"
+        - name: global.region
+          value: "eu-west-1"
+        - name: global.dynamodbTable
+          value: "local-organization-secrets"
+        - name: global.configNameToItemName.OCEAN__INTEGRATION__CONFIG__TOKEN_MAPPING
+          value: "org_BneDtWovPqXaA2VZ/global/a"
+        - name: ocean.integration.config.useSystemHook
+          value: "false"
+        - name: ocean.integration.identifier
+          value: "teststestest"
+        - name: ocean.integration.type
+          value: "gitlab"
+        - name: ocean.scheduledResyncInterval
+          value: "46 1,3,5,7,9,11,13,15,17,19,21,23 * * *"
+        - name: ocean.workload.cron.suspend
+          value: ""
+        - name: ocean.port.baseUrl
+          value: "http://localhost:3000"
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: "org-bnedtwovpqxaa2vz"

@@ -4,11 +4,11 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "2"
   name: "integration29x"
-  namespace: "org-pyooehmzgfid1clk"
+  namespace: "org-bnedtwovpqxaa2vz"
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   labels:
-    org_id: "org_pYOOehmzGfid1clK"
+    org_id: "org_BneDtWovPqXaA2VZ"
     integration_identifier: "integration29x"
     integration_id: "integration_vWv7lkYOcU7fr1ES"
 spec:
@@ -19,15 +19,15 @@ spec:
     helm:
       parameters:
         - name: global.orgCredentialsSecretName
-          value: "org-credentials-org-pyooehmzgfid1clk"
+          value: "org-credentials-org-bnedtwovpqxaa2vz"
         - name: global.roleArn
-          value: "arn:aws:iam::185657066287:role/staging-org_pYOOehmzGfid1clK-eu-west-1-secrets-store"
+          value: "arn:aws:iam::185657066287:role/staging-org_BneDtWovPqXaA2VZ-eu-west-1-secrets-store"
         - name: global.region
           value: "eu-west-1"
         - name: global.dynamodbTable
           value: "stg-01-organization-secrets"
         - name: global.configNameToItemName.OCEAN__INTEGRATION__CONFIG__TOKEN_MAPPING
-          value: "org_pYOOehmzGfid1clK/global/gitlab-token"
+          value: "org_BneDtWovPqXaA2VZ/global/gitlab-token"
         - name: ocean.integration.config.useSystemHook
           value: "false"
         - name: ocean.integration.identifier
@@ -42,4 +42,4 @@ spec:
           value: "https://api.stg-01.getport.io"
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: "org-pyooehmzgfid1clk"
+    namespace: "org-bnedtwovpqxaa2vz"

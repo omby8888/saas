@@ -1,0 +1,47 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: '2'
+  name: omri-now
+  namespace: org-pyooehmzgfid1clk
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    org_id: org_pYOOehmzGfid1clK
+    integration_identifier: omri-now
+    integration_id: integration_dBJbh7yOyxGWZyR5
+spec:
+  project: ocean
+  source:
+    repoURL: git@github.com:port-labs/ocean-saas-common.git
+    path: charts/ocean-saas-chart-wrap
+    helm:
+      parameters:
+        - name: global.orgCredentialsSecretName
+          value: org-credentials-org-pyooehmzgfid1clk
+        - name: global.roleArn
+          value: >-
+            arn:aws:iam::185657066287:role/staging-org_pYOOehmzGfid1clK-eu-west-1-secrets-store
+        - name: global.region
+          value: eu-west-1
+        - name: global.dynamodbTable
+          value: stg-01-organization-secrets
+        - name: >-
+            global.configNameToItemName.OCEAN__INTEGRATION__CONFIG__TOKEN_MAPPING
+          value: org_pYOOehmzGfid1clK/global/gitlab-token
+        - name: ocean.integration.config.useSystemHook
+          value: 'false'
+        - name: ocean.integration.identifier
+          value: omri-now
+        - name: ocean.integration.type
+          value: gitlab
+        - name: ocean.scheduledResyncInterval
+          value: 7 1,3,5,7,9,11,13,15,17,19,21,23 * * *
+        - name: ocean.workload.cron.suspend
+          value: ''
+        - name: ocean.port.baseUrl
+          value: https://api.stg-01.getport.io
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: org-pyooehmzgfid1clk

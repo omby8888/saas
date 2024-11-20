@@ -1,0 +1,51 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: '2'
+  name: gitlabtryyy
+  namespace: org-pyooehmzgfid1clk
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    org_id: org_pYOOehmzGfid1clK
+    integration_identifier: gitlabtryyy
+    integration_id: integration_TBkSnaISxGQmgD55
+spec:
+  project: ocean
+  source:
+    repoURL: git@github.com:port-labs/ocean-saas-common.git
+    path: charts/ocean-saas-chart-wrap
+    helm:
+      parameters:
+        - name: global.orgCredentialsSecretName
+          value: org-credentials-org-pyooehmzgfid1clk
+        - name: global.roleArn
+          value: >-
+            arn:aws:iam::185657066287:role/staging-org_pYOOehmzGfid1clK-eu-west-1-secrets-store
+        - name: global.region
+          value: eu-west-1
+        - name: global.dynamodbTable
+          value: stg-01-organization-secrets
+        - name: >-
+            global.configNameToItemName.OCEAN__INTEGRATION__CONFIG__TOKEN_MAPPING
+          value: org_pYOOehmzGfid1clK/global/port-gitlab-token
+        - name: ocean.integration.config.gitlabHost
+          value: https://gitlab.com
+        - name: ocean.integration.config.useSystemHook
+          value: 'false'
+        - name: ocean.integration.identifier
+          value: gitlabtryyy
+        - name: ocean.integration.type
+          value: gitlab
+        - name: ocean.scheduledResyncInterval
+          value: >-
+            10 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 * *
+            *
+        - name: ocean.workload.cron.suspend
+          value: ''
+        - name: ocean.port.baseUrl
+          value: https://api.stg-01.getport.io
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: org-pyooehmzgfid1clk

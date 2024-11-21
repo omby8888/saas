@@ -10,9 +10,7 @@ resources:
       itemsToParse: .file.content.dependencies | to_entries
       entity:
         mappings:
-          identifier: >-
-            .item.key + "_" + if (.item.value | startswith("^")) then
-            .item.value[1:] else . end
+          identifier: .item.key
           title: .item.key + "@" + .item.value
           blueprint: '"package"'
           properties:

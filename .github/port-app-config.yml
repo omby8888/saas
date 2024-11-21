@@ -1,19 +1,14 @@
 resources:
-  - kind: file
+  - kind: repository
     selector:
-      query: 'true'
-      files:
-        - path: '**/package.json'
-        - repos:
-            - stale
+      query: "true" # JQ boolean query. If evaluated to false - skip syncing the object.
     port:
-      itemsToParse: .file.content.dependencies | to_entries
       entity:
         mappings:
-          identifier: .item.key
-          title: .item.key + "@" + .item.value
-          blueprint: '"package"'
+          identifier: ".name" # The Entity identifier will be the repository name.
+          title: ".name"
+          blueprint: '"service"'
           properties:
-            package: .item.key
-            version: .item.value
-          relations: {}
+            readme: file://README.md # fetching the README.md file that is within the root folder of the repository and ingesting its contents as a markdown property
+            url: .html_url
+            defaultBranch: .default_branch

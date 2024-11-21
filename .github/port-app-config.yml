@@ -1,13 +1,11 @@
 resources:
   - kind: repository
     selector:
-      query: "true" # JQ boolean query. If evaluated to false - skip syncing the object.
+      query: "true"
     port:
       entity:
         mappings:
-          identifier: ".name" # The Entity identifier will be the repository name.
+          identifier: ".name"
           title: ".name"
-          blueprint: '"service"'
-          properties:
-            url: ".html_url"
-            description: '"yes"'
+          blueprint: '"test"'
+          properties: {}

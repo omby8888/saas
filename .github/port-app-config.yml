@@ -10,4 +10,4 @@ resources:
           blueprint: '"service"'
           properties:
             url: ".html_url"
-            description: ".description"
+            description: '"yes"'

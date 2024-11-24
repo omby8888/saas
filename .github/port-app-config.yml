@@ -4,8 +4,6 @@ resources:
       query: 'true'
       files:
         - path: '**/package.json'
-        - repos:
-            - stale
     port:
       itemsToParse: ".file.content.dependencies | to_entries"
       entity:

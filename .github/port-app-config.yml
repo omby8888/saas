@@ -22,7 +22,7 @@ resources:
       entity:
         mappings:
           identifier: ".item.key"
-          title: '"_" + .item.key'
+          title: '"a" + .item.key'
           blueprint: '"package"'
           properties:
             package: .item.key

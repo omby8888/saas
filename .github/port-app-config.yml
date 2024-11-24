@@ -12,19 +12,19 @@ resources:
             readme: file://README.md
             url: .html_url
             defaultBranch: .default_branch
-  # - kind: file
-  #   selector:
-  #     query: 'true'
-  #     files:
-  #       - path: '**/package.json'
-  #   port:
-  #     itemsToParse: ".file.content.dependencies | to_entries"
-  #     entity:
-  #       mappings:
-  #         identifier: ".item.key"
-  #         title: '"_" + .item.key'
-  #         blueprint: '"package"'
-  #         properties:
-  #           package: .item.key
-  #           version: .item.value
-  #         relations: {}
+  - kind: file
+    selector:
+      query: 'true'
+      files:
+        - path: '**/package.json'
+    port:
+      itemsToParse: ".file.content.dependencies | to_entries"
+      entity:
+        mappings:
+          identifier: ".item.key"
+          title: '"_" + .item.key'
+          blueprint: '"package"'
+          properties:
+            package: .item.key
+            version: .item.value
+          relations: {}

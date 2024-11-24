@@ -9,7 +9,7 @@ resources:
           title: ".name"
           blueprint: '"service"'
           properties:
-            readme: file://README.md # fetching the README.md file that is within the root folder of the repository and ingesting its contents as a markdown property
+            readme: file://README.md
             url: .html_url
             defaultBranch: .default_branch
   # - kind: file

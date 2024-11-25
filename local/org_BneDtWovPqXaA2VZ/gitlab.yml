@@ -29,7 +29,7 @@ spec:
         - name: global.configNameToItemName.OCEAN__INTEGRATION__CONFIG__TOKEN_MAPPING
           value: "org_BneDtWovPqXaA2VZ/global/_GITLAB_TOKEN_MAPPING"
         - name: ocean.integration.config.gitlabHost
-          value: "https://gitlab.com"
+          value: "https://gitlabhjh.com"
         - name: ocean.integration.config.useSystemHook
           value: "false"
         - name: ocean.integration.identifier

@@ -10,7 +10,7 @@ metadata:
   labels:
     org_id: "org_BneDtWovPqXaA2VZ"
     integration_identifier: "jira"
-    integration_id: "integration_uR2aEQ7I8AqNkVyo"
+    integration_id: "integration_MA0VQsiJlVQfPxyQ"
 spec:
   project: ocean
   source:

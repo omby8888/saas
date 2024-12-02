@@ -1,0 +1,45 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+  name: "pager"
+  namespace: "org-bnedtwovpqxaa2vz"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    org_id: "org_BneDtWovPqXaA2VZ"
+    integration_identifier: "pager"
+    integration_id: "integration_aEeI6j7RFBy62P0A"
+spec:
+  project: ocean
+  source:
+    repoURL: 'git@github.com:port-labs/ocean-saas-common.git'
+    path: charts/ocean-saas-chart-wrap
+    helm:
+      parameters:
+        - name: global.orgCredentialsSecretName
+          value: "org-credentials-org-bnedtwovpqxaa2vz"
+        - name: global.roleArn
+          value: "arn:aws:iam::000000000000:role/local-org_BneDtWovPqXaA2VZ-eu-west-1-secrets-store"
+        - name: global.region
+          value: "eu-west-1"
+        - name: global.dynamodbTable
+          value: "local-organization-secrets"
+        - name: global.configNameToItemName.OCEAN__INTEGRATION__CONFIG__ATLASSIAN_USER_EMAIL
+          value: "org_BneDtWovPqXaA2VZ/global/_OAUTH_2_JIRA_PAGER_ATLASSIAN_USER_EMAIL"
+        - name: global.configNameToItemName.OCEAN__INTEGRATION__CONFIG__ATLASSIAN_USER_TOKEN
+          value: "org_BneDtWovPqXaA2VZ/global/_OAUTH_2_JIRA_PAGER_ATLASSIAN_USER_TOKEN"
+        - name: ocean.integration.config.jiraHost
+          value: "https://api.atlassian.com/ex/jira/33f08530-afd8-42fd-82cc-1dd5ebfeece8"
+        - name: ocean.integration.identifier
+          value: "pager"
+        - name: ocean.integration.type
+          value: "jira"
+        - name: ocean.workload.cron.suspend
+          value: ""
+        - name: ocean.port.baseUrl
+          value: "http://localhost:3000"
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: "org-bnedtwovpqxaa2vz"

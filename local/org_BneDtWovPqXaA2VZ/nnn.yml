@@ -10,7 +10,7 @@ metadata:
   labels:
     org_id: "org_BneDtWovPqXaA2VZ"
     integration_identifier: "nnn"
-    integration_id: "integration_kOtzt6ZQfi6Zp5pm"
+    integration_id: "integration_fvxt3bAofCTSsG97"
 spec:
   project: ocean
   source:
@@ -27,9 +27,9 @@ spec:
         - name: global.dynamodbTable
           value: "local-organization-secrets"
         - name: global.configNameToItemName.OCEAN__INTEGRATION__CONFIG__ATLASSIAN_USER_EMAIL
-          value: "org_BneDtWovPqXaA2VZ/global/_OAUTH_2_JIRA_NNN_ATLASSIAN_USER_EMAIL"
+          value: "org_BneDtWovPqXaA2VZ/global/_OAUTH_JIRA_NNN_ATLASSIAN_USER_EMAIL"
         - name: global.configNameToItemName.OCEAN__INTEGRATION__CONFIG__ATLASSIAN_USER_TOKEN
-          value: "org_BneDtWovPqXaA2VZ/global/_OAUTH_2_JIRA_NNN_ATLASSIAN_USER_TOKEN"
+          value: "org_BneDtWovPqXaA2VZ/global/_OAUTH_JIRA_NNN_ATLASSIAN_USER_TOKEN"
         - name: ocean.integration.config.jiraHost
           value: "https://api.atlassian.com/ex/jira/33f08530-afd8-42fd-82cc-1dd5ebfeece8"
         - name: ocean.integration.identifier

@@ -10,7 +10,7 @@ metadata:
   labels:
     org_id: "org_BneDtWovPqXaA2VZ"
     integration_identifier: "nnn"
-    integration_id: "integration_cnUv2RA52TTRUsuG"
+    integration_id: "integration_sQs8k5rvEMsrpnyj"
 spec:
   project: ocean
   source:

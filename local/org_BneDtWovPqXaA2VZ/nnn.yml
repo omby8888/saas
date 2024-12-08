@@ -10,7 +10,7 @@ metadata:
   labels:
     org_id: "org_BneDtWovPqXaA2VZ"
     integration_identifier: "nnn"
-    integration_id: "integration_ZDiMIffWlMv6aaJn"
+    integration_id: "integration_iQ5VGtrEJcyFbV6C"
 spec:
   project: ocean
   source:
@@ -20,10 +20,17 @@ spec:
       parameters:
         - name: global.orgCredentialsSecretName
           value: "org-credentials-org-bnedtwovpqxaa2vz"
-        - name: global.roleArn
-          value: "arn:aws:iam::000000000000:role/local-org_BneDtWovPqXaA2VZ-eu-west-1-secrets-store"
+        # Secrets store serviceaccount Role ARN - will be created in ocean-saas-common terraform repository. Grants permissions to assume the secrets-store assumed role and tag the session while assuming the role.
+        - name: global.secretStoreIRSAAssumedRoleArn
+          value: "arn:aws:iam::000000000000:role/local-eu-west-1-secrets-store-irsa-role"
+        # Secrets store assumed role ARN - will be created in port-tf terraform repository. Grants permissions to get the values from the secrets-store based on the session tags used in the assume function.
+        # This role will be assumed in the initcontainer of the integrations jobs.
+        - name: global.secretStoreAssumedRoleArn
+          value: "arn:aws:iam::000000000000:role/local-eu-west-1-secrets-store-assumedrole-role"
         - name: global.region
           value: "eu-west-1"
+        - name: global.orgId
+          value: "org_BneDtWovPqXaA2VZ"
         - name: global.dynamodbTable
           value: "local-organization-secrets"
         - name: global.configNameToItemName.OCEAN__INTEGRATION__CONFIG__ATLASSIAN_USER_EMAIL

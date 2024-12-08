@@ -1,0 +1,54 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+  name: "gitlabjkj"
+  namespace: "org-bnedtwovpqxaa2vz"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    org_id: "org_BneDtWovPqXaA2VZ"
+    integration_identifier: "gitlabjkj"
+    integration_id: "integration_qnFgj3e2ZV8pnFSz"
+spec:
+  project: ocean
+  source:
+    repoURL: 'git@github.com:port-labs/ocean-saas-common.git'
+    path: charts/ocean-saas-chart-wrap
+    helm:
+      parameters:
+        - name: global.orgCredentialsSecretName
+          value: "org-credentials-org-bnedtwovpqxaa2vz"
+        # Secrets store serviceaccount Role ARN - will be created in ocean-saas-common terraform repository. Grants permissions to assume the secrets-store assumed role and tag the session while assuming the role.
+        - name: global.secretStoreIRSAAssumedRoleArn
+          value: "arn:aws:iam::000000000000:role/local-eu-west-1-secrets-store-irsa-role"
+        # Secrets store assumed role ARN - will be created in port-tf terraform repository. Grants permissions to get the values from the secrets-store based on the session tags used in the assume function.
+        # This role will be assumed in the initcontainer of the integrations jobs.
+        - name: global.secretStoreAssumedRoleArn
+          value: "arn:aws:iam::000000000000:role/local-eu-west-1-secrets-store-assumedrole-role"
+        - name: global.region
+          value: "eu-west-1"
+        - name: global.orgId
+          value: "org_BneDtWovPqXaA2VZ"
+        - name: global.dynamodbTable
+          value: "local-organization-secrets"
+        - name: global.configNameToItemName.OCEAN__INTEGRATION__CONFIG__TOKEN_MAPPING
+          value: "org_BneDtWovPqXaA2VZ/global/_GITLAB_TOKEN_MAPPING"
+        - name: ocean.integration.config.gitlabHost
+          value: "https://gitlab.com"
+        - name: ocean.integration.config.useSystemHook
+          value: "false"
+        - name: ocean.integration.identifier
+          value: "gitlabjkj"
+        - name: ocean.integration.type
+          value: "gitlab"
+        - name: ocean.scheduledResyncInterval
+          value: "9 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 * * *"
+        - name: ocean.workload.cron.suspend
+          value: ""
+        - name: ocean.port.baseUrl
+          value: "http://localhost:3000"
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: "org-bnedtwovpqxaa2vz"

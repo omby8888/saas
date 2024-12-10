@@ -34,13 +34,13 @@ spec:
         - name: global.dynamodbTable
           value: "local-organization-secrets"
         - name: global.configNameToItemName.OCEAN__INTEGRATION__CONFIG__TOKEN_MAPPING
-          value: "org_BneDtWovPqXaA2VZ/system/__GITLAB_GITLAKJBH_TOKEN_MAPPING"
+          value: "org_BneDtWovPqXaA2VZ/system/__GITLAB_GITLAKJBH_ACCESS_TOKEN"
         - name: ocean.integration.identifier
           value: "gitlakjbh"
         - name: ocean.integration.type
           value: "gitlab"
         - name: ocean.scheduledResyncInterval
-          value: "24 1,3,5,7,9,11,13,15,17,19,21,23 * * *"
+          value: "28 11,23 * * *"
         - name: ocean.workload.cron.suspend
           value: ""
         - name: ocean.port.baseUrl

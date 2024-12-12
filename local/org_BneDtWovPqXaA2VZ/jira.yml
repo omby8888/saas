@@ -10,7 +10,7 @@ metadata:
   labels:
     org_id: "org_BneDtWovPqXaA2VZ"
     integration_identifier: "jira"
-    integration_id: "integration_o2OGvxD8iqR8CFMD"
+    integration_id: "integration_jomOSCWq8CzCG0sY"
 spec:
   project: ocean
   source:
@@ -34,17 +34,15 @@ spec:
         - name: global.dynamodbTable
           value: "local-organization-secrets"
         - name: global.configNameToItemName.OCEAN__INTEGRATION__CONFIG__ATLASSIAN_USER_EMAIL
-          value: "org_BneDtWovPqXaA2VZ/global/_JIRA_ATLASSIAN_USER_EMAIL"
+          value: "org_BneDtWovPqXaA2VZ/system/__JIRA_JIRA_ATLASSIAN_USER_EMAIL"
         - name: global.configNameToItemName.OCEAN__INTEGRATION__CONFIG__ATLASSIAN_USER_TOKEN
-          value: "org_BneDtWovPqXaA2VZ/global/_JIRA_ATLASSIAN_USER_TOKEN"
+          value: "org_BneDtWovPqXaA2VZ/system/__JIRA_JIRA_ATLASSIAN_USER_TOKEN"
         - name: ocean.integration.config.jiraHost
-          value: "http://gever.com"
+          value: "https://api.atlassian.com/ex/jira/33f08530-afd8-42fd-82cc-1dd5ebfeece8"
         - name: ocean.integration.identifier
           value: "jira"
         - name: ocean.integration.type
           value: "jira"
-        - name: ocean.scheduledResyncInterval
-          value: "29 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 * * *"
         - name: ocean.workload.cron.suspend
           value: ""
         - name: ocean.port.baseUrl

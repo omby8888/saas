@@ -10,12 +10,13 @@ metadata:
   labels:
     org_id: "org_BneDtWovPqXaA2VZ"
     integration_identifier: "jira"
-    integration_id: "integration_OCZ9m1v3L26gxzWp"
+    integration_id: "integration_QNCtQ5g5wF6HOpSQ"
 spec:
   project: ocean
   source:
     repoURL: 'git@github.com:port-labs/ocean-saas-common.git'
     path: charts/ocean-saas-chart-wrap
+    targetRevision: "main"
     helm:
       parameters:
         - name: global.orgCredentialsSecretName
@@ -43,6 +44,8 @@ spec:
           value: "jira"
         - name: ocean.integration.type
           value: "jira"
+        - name: ocean.scheduledResyncInterval
+          value: "55 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 * * *"
         - name: ocean.workload.cron.suspend
           value: ""
         - name: ocean.port.baseUrl

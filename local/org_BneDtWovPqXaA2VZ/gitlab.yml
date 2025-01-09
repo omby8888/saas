@@ -10,7 +10,7 @@ metadata:
   labels:
     org_id: "org_BneDtWovPqXaA2VZ"
     integration_identifier: "gitlab"
-    integration_id: "integration_JDc0Wn4UyPQDz1sy"
+    integration_id: "integration_YOIbacr8TQAQUnQO"
 spec:
   project: ocean
   source:
@@ -41,7 +41,7 @@ spec:
         - name: ocean.integration.type
           value: "gitlab"
         - name: ocean.scheduledResyncInterval
-          value: "55 1,3,5,7,9,11,13,15,17,19,21,23 * * *"
+          value: "25 0,2,4,6,8,10,12,14,16,18,20,22 * * *"
         - name: ocean.workload.cron.suspend
           value: ""
         - name: ocean.port.baseUrl

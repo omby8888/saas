@@ -1,0 +1,51 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+  name: "gitlabb"
+  namespace: "org-bnedtwovpqxaa2vz"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    org_id: "org_BneDtWovPqXaA2VZ"
+    integration_identifier: "gitlabb"
+    integration_id: "integration_RAaNsE8AmhkB5cQc"
+spec:
+  project: ocean
+  source:
+    repoURL: 'git@github.com:port-labs/ocean-saas-common.git'
+    path: charts/ocean-saas-chart-wrap
+    targetRevision: "main"
+    helm:
+      parameters:
+        - name: global.orgCredentialsSecretName
+          value: "org-credentials-org-bnedtwovpqxaa2vz"
+        # Secrets store serviceaccount Role ARN - will be created in ocean-saas-common terraform repository. Grants permissions to assume the secrets-store assumed role and tag the session while assuming the role.
+        - name: global.secretStoreIRSAAssumedRoleArn
+          value: "arn:aws:iam::000000000000:role/local-eu-west-1-secrets-store-irsa-role"
+        # Secrets store assumed role ARN - will be created in port-tf terraform repository. Grants permissions to get the values from the secrets-store based on the session tags used in the assume function.
+        # This role will be assumed in the initcontainer of the integrations jobs.
+        - name: global.secretStoreAssumedRoleArn
+          value: "arn:aws:iam::000000000000:role/local-eu-west-1-secrets-store-assumedrole-role"
+        - name: global.region
+          value: "eu-west-1"
+        - name: global.orgId
+          value: "org_BneDtWovPqXaA2VZ"
+        - name: global.dynamodbTable
+          value: "local-organization-secrets"
+        - name: global.configNameToItemName.OCEAN__INTEGRATION__CONFIG__TOKEN_MAPPING
+          value: "org_BneDtWovPqXaA2VZ/system/__GITLAB_GITLABB_TOKEN_MAPPING"
+        - name: ocean.integration.identifier
+          value: "gitlabb"
+        - name: ocean.integration.type
+          value: "gitlab"
+        - name: ocean.scheduledResyncInterval
+          value: "10 1,3,5,7,9,11,13,15,17,19,21,23 * * *"
+        - name: ocean.workload.cron.suspend
+          value: ""
+        - name: ocean.port.baseUrl
+          value: "http://localhost:3000"
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: "org-bnedtwovpqxaa2vz"

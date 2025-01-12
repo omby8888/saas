@@ -10,12 +10,13 @@ metadata:
   labels:
     org_id: "org_BneDtWovPqXaA2VZ"
     integration_identifier: "gitlabh"
-    integration_id: "integration_V2jof3jQtVk45VUQ"
+    integration_id: "integration_lrfoQMyVkbM58E7T"
 spec:
   project: ocean
   source:
     repoURL: 'git@github.com:port-labs/ocean-saas-common.git'
     path: charts/ocean-saas-chart-wrap
+    targetRevision: "main"
     helm:
       parameters:
         - name: global.orgCredentialsSecretName
@@ -35,14 +36,12 @@ spec:
           value: "local-organization-secrets"
         - name: global.configNameToItemName.OCEAN__INTEGRATION__CONFIG__TOKEN_MAPPING
           value: "org_BneDtWovPqXaA2VZ/system/__GITLAB_GITLABH_TOKEN_MAPPING"
-        - name: ocean.integration.config.gitlabHost
-          value: "https://gitlab.com"
         - name: ocean.integration.identifier
           value: "gitlabh"
         - name: ocean.integration.type
           value: "gitlab"
         - name: ocean.scheduledResyncInterval
-          value: "40 1,3,5,7,9,11,13,15,17,19,21,23 * * *"
+          value: "9 1,3,5,7,9,11,13,15,17,19,21,23 * * *"
         - name: ocean.workload.cron.suspend
           value: ""
         - name: ocean.port.baseUrl

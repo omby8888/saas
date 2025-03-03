@@ -10,7 +10,7 @@ metadata:
   labels:
     org_id: "org_BneDtWovPqXaA2VZ"
     integration_identifier: "gitlab"
-    integration_id: "integration_P49zHvRFlOusZGB6"
+    integration_id: "integration_GV7E22df3TjQ4J3q"
 spec:
   project: ocean
   source:
@@ -40,14 +40,26 @@ spec:
           value: "gitlab"
         - name: ocean.integration.type
           value: "gitlab"
+        - name: ocean.integration.oauth.enabled
+          value: "true"
         - name: ocean.scheduledResyncInterval
-          value: "0 0,2,4,6,8,10,12,14,16,18,20,22 * * *"
+          value: "22 0,2,4,6,8,10,12,14,16,18,20,22 * * *"
         - name: ocean.workload.cron.suspend
-          value: ""
+          value: "false"
         - name: ocean.port.baseUrl
           value: "http://localhost:3000"
         - name: ocean.extraLabels.portHost
           value: "localhost"
+        - name: ocean.liveEvents.uuid
+          value: "THSEt5krf41ZHwju"
+        - name: ocean.liveEvents.worker.enabled
+          value: "false"
+        - name: ocean.liveEvents.ingestHostname
+          value: ""
+        - name: ocean.liveEvents.extraConfig.OCEAN__BASE_URL
+          value: "https:///live-events/THSEt5krf41ZHwju"
+        - name: ocean.integration.extraConfig.OCEAN__BASE_URL
+          value: "https:///live-events/THSEt5krf41ZHwju"
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: "org-bnedtwovpqxaa2vz"
